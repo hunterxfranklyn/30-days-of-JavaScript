@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Video Speed Scrubber</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="icon" href="https://fav.farm/🔥" />
+</head>
+<body>
+
+  <div class="wrapper">
+    <video class="flex" width="765" height="430" src="652333414.mp4" loop controls></video>
+    <div class="speed">
+      <div class="speed-bar">1×</div>
+    </div>
+  </div>
+
+<script>
+
+  const speed = document.querySelector('.speed');
+  const speedBar = document.querySelector('.speed-bar');
+  const video = document.querySelector('.flex');
+
+  speed.addEventListener('mousemove', (e) => {
+    const height = e.pageY - speed.offsetTop;
+    const max = 4;
+    const min = 0.4;
+    const percent = height/ speed.offsetHeight;
+    const scaledValue = (min + (max - min) * percent).toFixed(2);
+
+    speedBar.style.height = percent * 100 + '%';
+    speedBar.textContent = scaledValue + 'x';
+    video.playbackRate = scaledValue;
+    
+  })
+
+</script>
+</body>
+</html>
